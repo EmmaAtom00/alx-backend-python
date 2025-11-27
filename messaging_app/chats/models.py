@@ -9,7 +9,7 @@ class User(AbstractUser):
     Uses UUID as the primary key and adds additional fields.
     """
     # 1. Replace AbstractUser's default "id" instead of adding "user_id"
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
     # 2. AbstractUser already includes: username, first_name, last_name, email, password
     email = models.EmailField(unique=True, null=False)
@@ -42,7 +42,7 @@ class Message(models.Model):
     """
     Message model containing sender, conversation, and message body.
     """
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    message_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     sender = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name='sent messages')
     message_body = models.TextField()
     sent_at = models.DateTimeField(auto_now_add=True)
@@ -55,7 +55,7 @@ class Conversation(models.Model):
     """
     Conversation model tracking which users are part of the chat.
     """
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    conversation_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     participants = models.ManyToManyField('users.User', on_delete=models.CASCADE, related_name='conversations')
     created_at = models.DateTimeField(auto_now_add=True)
 

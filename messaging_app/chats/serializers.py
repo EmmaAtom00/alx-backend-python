@@ -37,7 +37,7 @@ class MessageSerializer(serializers.ModelSerializer):
 class ConversationSerializer(serializers.ModelSerializer):
 
     participants = UserSerializer(many=True, read_only=True)
-    
+
     class Meta:
         Model = Conversation
         fields = [
@@ -46,3 +46,5 @@ class ConversationSerializer(serializers.ModelSerializer):
             "created_at"
         ]
         read_only_fields = ["conversation_id, created_at"]
+
+# Serialization in Python

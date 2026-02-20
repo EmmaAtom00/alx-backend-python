@@ -19,9 +19,11 @@ In data-driven applications, memory management is key to performance. This proje
 | --- | --- |
 | `seed.py` | Implementation of database connection, initialization, and seeding. |
 | `0-stream_users.py` | Generator that yields users from the database one by one. |
+| `1-batch_processing.py` | Generator for fetching users in batches and processing them. |
 | `user_data.csv` | Sample dataset used for seeding the `ALX_prodev` database. |
 | `0-main.py` | Verification script for testing the seeding process. |
 | `1-main.py` | Verification script for testing row streaming. |
+| `2-main.py` | Verification script for testing batch processing. |
 | `LEARNING.md` | Comprehensive deep-dive documentation into project concepts. |
 | `README.md` | This file; project overview and instructions. |
 

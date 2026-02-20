@@ -62,6 +62,15 @@ In `0-stream_users.py`, we implement a generator that streams rows from the data
 - **`dictionary=True`**: By passing this to the cursor constructor, each row is returned as a Python dictionary (e.g., `{'name': 'John', 'age': 30}`) instead of a tuple. This makes the data much easier to work with.
 - **Memory Efficiency**: Since we iterate over the cursor one row at a time, we don't need to load the entire result set into memory.
 
+### Batch Processing with `fetchmany()`
+In `1-batch_processing.py`, we take efficiency a step further by using **Batch Processing**.
+- **`fetchmany(batch_size)`**: This method retrieves a fixed number of rows from the database at once. 
+- **The Trade-off**:
+    - **One-by-One**: Lowest memory usage, but can be slow due to many overhead calls between Python and the database.
+    - **Batch**: Balance between memory and speed. It's much faster than one-by-one because it reduces network/internal overhead, but uses more memory than one-by-one (it stores `batch_size` rows in RAM).
+    - **Fetchall**: Fastest but uses the most memory.
+
+
 ---
 
 ## 4. Optimize Performance: Streaming Results

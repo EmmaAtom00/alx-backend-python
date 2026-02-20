@@ -57,6 +57,11 @@ In this project, we created a table `user_data`. Let's break down the technical 
 - **`create_database()`**: Uses `CREATE DATABASE IF NOT EXISTS`. This prevents the script from crashing if it's rerun, making the setup "restartable."
 - **`create_table()`**: Defines the "blueprint" of our data. By setting constraints like `NOT NULL`, we ensure data integrity at the database level.
 
+### Streaming with Dictionary Cursors
+In `0-stream_users.py`, we implement a generator that streams rows from the database.
+- **`dictionary=True`**: By passing this to the cursor constructor, each row is returned as a Python dictionary (e.g., `{'name': 'John', 'age': 30}`) instead of a tuple. This makes the data much easier to work with.
+- **Memory Efficiency**: Since we iterate over the cursor one row at a time, we don't need to load the entire result set into memory.
+
 ---
 
 ## 4. Optimize Performance: Streaming Results
@@ -66,6 +71,7 @@ The ultimate goal of this project is to create a generator that streams SQL rows
 ### `fetchall()` vs. Generators
 - **`cursor.fetchall()`**: Pulls every single result from the database and puts it into a Python list. If your query returns 5GB of data, your program will likely crash.
 - **Streaming Generator**: By using a generator to fetch rows one-by-one (or in small buffers), we can process a 100GB database on a laptop with only 4GB of RAM.
+
 
 ---
 
